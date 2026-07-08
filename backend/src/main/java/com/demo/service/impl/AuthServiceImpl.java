@@ -67,7 +67,7 @@ public class AuthServiceImpl implements IAuthService {
             return new LoginResponse(true, "登录成功", token, "teacher", userMap);
         }
 
-        // 3. 尝试班长
+        // 3. 尝试班级
         Optional<Monitor> monitorOpt = monitorRepository.findById(username);
         if (monitorOpt.isPresent() && monitorOpt.get().getPassword().equals(password)) {
             Monitor monitor = monitorOpt.get();

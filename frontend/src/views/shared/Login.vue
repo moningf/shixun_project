@@ -62,7 +62,7 @@
         </el-form>
 
         <div class="card-footer">
-          <span>支持管理员 / 教师 / 班长 三种身份登录</span>
+          <span>支持管理员 / 教师 / 班级 三种身份登录</span>
         </div>
       </div>
     </div>

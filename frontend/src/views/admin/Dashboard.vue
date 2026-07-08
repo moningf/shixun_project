@@ -13,7 +13,7 @@
         <el-card shadow="hover" class="stat-card" @click="$router.push('/admin/monitors')">
           <el-icon :size="40" color="#67C23A"><UserFilled /></el-icon>
           <div class="stat-num">{{ stats.monitorCount }}</div>
-          <div class="stat-label">班长总数</div>
+          <div class="stat-label">班级总数</div>
         </el-card>
       </el-col>
       <el-col :span="8">

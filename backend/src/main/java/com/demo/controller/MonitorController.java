@@ -35,7 +35,7 @@ public class MonitorController {
             m.setPassword(null);
             return ApiResponse.success(m);
         }
-        return ApiResponse.error(404, "班长不存在");
+        return ApiResponse.error(404, "班级不存在");
     }
 
     @PostMapping
@@ -78,9 +78,9 @@ public class MonitorController {
         return ApiResponse.success(list);
     }
 
-    // ==================== 班长自助接口（基于 ThreadLocal 用户上下文） ====================
+    // ==================== 班级自助接口（基于 ThreadLocal 用户上下文） ====================
 
-    /** 班长查自己的信息 */
+    /** 班级查自己的信息 */
     @GetMapping("/me")
     public ApiResponse<Monitor> getMe() {
         Monitor m = monitorService.findById(UserContext.getUserId());
@@ -88,10 +88,10 @@ public class MonitorController {
             m.setPassword(null);
             return ApiResponse.success(m);
         }
-        return ApiResponse.error(404, "班长不存在");
+        return ApiResponse.error(404, "班级不存在");
     }
 
-    /** 班长改自己的密码 */
+    /** 班级改自己的密码 */
     @PutMapping("/me/password")
     public ApiResponse<String> modifyMyPassword(@RequestBody Map<String, String> params) {
         if (monitorService.modifyPassword(UserContext.getUserId(), params.get("password"))) {
@@ -100,7 +100,7 @@ public class MonitorController {
         return ApiResponse.error(400, "密码修改失败");
     }
 
-    /** 班长改自己的信息 */
+    /** 班级改自己的信息 */
     @PutMapping("/me/info")
     public ApiResponse<Monitor> modifyMyInfo(@RequestBody Monitor monitor) {
         String userId = UserContext.getUserId();

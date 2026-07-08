@@ -16,8 +16,8 @@ const routes = [
     children: [
       { path: 'dashboard', name: 'AdminDashboard', component: () => import('@/views/admin/Dashboard.vue'), meta: { title: '管理员首页' } },
       { path: 'teachers', name: 'TeacherManagement', component: () => import('@/views/admin/TeacherManagement.vue'), meta: { title: '教师管理' } },
-      { path: 'monitors', name: 'MonitorManagement', component: () => import('@/views/admin/MonitorManagement.vue'), meta: { title: '班长管理' } },
-      { path: 'monitors/find', name: 'MonitorFind', component: () => import('@/views/admin/MonitorFind.vue'), meta: { title: '查询班长' } },
+      { path: 'monitors', name: 'MonitorManagement', component: () => import('@/views/admin/MonitorManagement.vue'), meta: { title: '班级管理' } },
+      { path: 'monitors/find', name: 'MonitorFind', component: () => import('@/views/admin/MonitorFind.vue'), meta: { title: '查询班级' } },
       { path: 'books', name: 'AdminBookManagement', component: () => import('@/views/admin/BookManagement.vue'), meta: { title: '教材管理' } },
       { path: 'books/find', name: 'AdminBookFind', component: () => import('@/views/admin/BookFind.vue'), meta: { title: '查询教材' } },
       { path: 'reserves', name: 'AdminReserves', component: () => import('@/views/admin/AllReserves.vue'), meta: { title: '全部订单' } },
@@ -50,7 +50,7 @@ const routes = [
     meta: { role: 'monitor' },
     redirect: '/monitor/dashboard',
     children: [
-      { path: 'dashboard', name: 'MonitorDashboard', component: () => import('@/views/monitor/Dashboard.vue'), meta: { title: '班长首页' } },
+      { path: 'dashboard', name: 'MonitorDashboard', component: () => import('@/views/monitor/Dashboard.vue'), meta: { title: '班级首页' } },
       { path: 'books', name: 'MonitorBooks', component: () => import('@/views/monitor/BookReserve.vue'), meta: { title: '教材浏览' } },
       { path: 'books/find', name: 'MonitorBookFind', component: () => import('@/views/monitor/BookFind.vue'), meta: { title: '查询教材' } },
       { path: 'reserves', name: 'MonitorReserves', component: () => import('@/views/monitor/MyReserves.vue'), meta: { title: '我的订单' } },

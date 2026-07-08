@@ -37,7 +37,7 @@ public class UserContext {
     }
 
     /**
-     * 判断当前用户是否为班长
+     * 判断当前用户是否为班级
      */
     public static boolean isMonitor() {
         return "monitor".equals(getRole());

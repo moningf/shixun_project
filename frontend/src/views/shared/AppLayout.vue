@@ -99,10 +99,10 @@ const activeMenu = computed(() => route.path)
 const adminMenu = [
   { path: '/admin/dashboard', title: '工作台', icon: 'HomeFilled' },
   { path: '/admin/teachers', title: '教师管理', icon: 'User' },
-  { path: '/admin/monitors', title: '班长管理', icon: 'UserFilled',
+  { path: '/admin/monitors', title: '班级管理', icon: 'UserFilled',
     children: [
-      { path: '/admin/monitors', title: '班长列表', icon: 'List' },
-      { path: '/admin/monitors/find', title: '查询班长', icon: 'Search' },
+      { path: '/admin/monitors', title: '班级列表', icon: 'List' },
+      { path: '/admin/monitors/find', title: '查询班级', icon: 'Search' },
     ]
   },
   { path: '/admin/books', title: '教材管理', icon: 'Reading',

@@ -18,7 +18,7 @@
           <el-form-item label="课程号"><el-input v-model="form.ccno" /></el-form-item>
         </template>
         <template v-if="isMonitor">
-          <el-form-item label="学号"><el-input v-model="form.cno" disabled /></el-form-item>
+          <el-form-item label="班级编号"><el-input v-model="form.cno" disabled /></el-form-item>
           <el-form-item label="年级"><el-input v-model="form.cgrade" /></el-form-item>
           <el-form-item label="学院"><el-input v-model="form.cdept" /></el-form-item>
           <el-form-item label="专业"><el-input v-model="form.cmajor" /></el-form-item>

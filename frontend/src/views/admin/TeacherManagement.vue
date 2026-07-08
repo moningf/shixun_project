@@ -7,6 +7,19 @@
           <el-button type="primary" @click="showAddDialog">添加教师</el-button>
         </div>
       </template>
+
+      <!-- 搜索栏 -->
+      <el-form :model="searchForm" inline class="search-bar">
+        <el-form-item label="教师编号"><el-input v-model="searchForm.tno" placeholder="教师编号" clearable /></el-form-item>
+        <el-form-item label="姓名"><el-input v-model="searchForm.tname" placeholder="姓名" clearable /></el-form-item>
+        <el-form-item label="学院"><el-input v-model="searchForm.tdept" placeholder="学院" clearable /></el-form-item>
+        <el-form-item label="课程号"><el-input v-model="searchForm.ccno" placeholder="课程号" clearable /></el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleSearch">查询</el-button>
+          <el-button @click="resetSearch">重置</el-button>
+        </el-form-item>
+      </el-form>
+
       <el-table :data="tableData" border stripe v-loading="loading">
         <el-table-column prop="tno" label="教师编号" width="100" />
         <el-table-column prop="tname" label="姓名" width="100" />
@@ -48,11 +61,13 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-import { getTeachers, addTeacher, updateTeacher, deleteTeacher } from '@/api'
+import { getTeachers, searchTeachers, addTeacher, updateTeacher, deleteTeacher } from '@/api'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 const tableData = ref([])
 const loading = ref(false)
+const searchForm = ref({ tno: '', tname: '', tdept: '', ccno: '' })
+const isSearching = ref(false)
 const dialogVisible = ref(false)
 const isEdit = ref(false)
 const submitting = ref(false)
@@ -75,9 +90,29 @@ async function loadData() {
   try {
     const res = await getTeachers()
     tableData.value = res.data || []
+    isSearching.value = false
   } finally {
     loading.value = false
   }
+}
+
+async function handleSearch() {
+  const params = searchForm.value
+  if (!params.tno && !params.tname && !params.tdept && !params.ccno) {
+    loadData()
+    return
+  }
+  loading.value = true
+  try {
+    const res = await searchTeachers(params)
+    tableData.value = res.data || []
+    isSearching.value = true
+  } finally { loading.value = false }
+}
+
+function resetSearch() {
+  searchForm.value = { tno: '', tname: '', tdept: '', ccno: '' }
+  loadData()
 }
 
 function showAddDialog() {
@@ -113,7 +148,7 @@ async function handleSubmit() {
       ElMessage.success('添加成功')
     }
     dialogVisible.value = false
-    loadData()
+    refreshData()
   } catch (e) {
     ElMessage.error('操作失败')
   } finally {
@@ -121,12 +156,17 @@ async function handleSubmit() {
   }
 }
 
+function refreshData() {
+  if (isSearching.value) handleSearch()
+  else loadData()
+}
+
 async function handleDelete(tno) {
   try {
     await ElMessageBox.confirm('确定删除该教师吗？', '提示', { type: 'warning' })
     await deleteTeacher(tno)
     ElMessage.success('删除成功')
-    loadData()
+    refreshData()
   } catch (e) {}
 }
 
@@ -135,4 +175,5 @@ onMounted(loadData)
 
 <style scoped>
 .card-header { display: flex; justify-content: space-between; align-items: center; }
+.search-bar { margin-bottom: 16px; padding: 12px 16px 0; background: #fafafa; border-radius: 6px; }
 </style>

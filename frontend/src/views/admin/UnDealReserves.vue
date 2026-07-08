@@ -4,7 +4,7 @@
       <template #header><span>未处理订单</span></template>
       <el-table :data="tableData" border stripe v-loading="loading">
         <el-table-column prop="id" label="订单号" width="80" />
-        <el-table-column prop="cno" label="学号" width="120" />
+        <el-table-column prop="cno" label="班级编号" width="120" />
         <el-table-column prop="bno" label="书号" width="100" />
         <el-table-column label="书名" min-width="150">
           <template #default="{ row }">{{ row.book?.bname || '' }}</template>

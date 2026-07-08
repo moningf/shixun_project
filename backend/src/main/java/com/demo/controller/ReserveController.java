@@ -40,7 +40,7 @@ public class ReserveController {
         return ApiResponse.error(404, "订单不存在");
     }
 
-    /** 管理员按学号查订单 */
+    /** 管理员按班级编号查订单 */
     @GetMapping("/by-monitor/{cno}")
     public ApiResponse<List<Reserve>> getByCno(@PathVariable String cno) {
         return ApiResponse.success(reserveService.findByCno(cno));
@@ -73,22 +73,22 @@ public class ReserveController {
         return ApiResponse.error(400, "库存不足，处理失败");
     }
 
-    // ==================== 班长自助接口 ====================
+    // ==================== 班级自助接口 ====================
 
-    /** 班长查自己的订单 */
+    /** 班级查自己的订单 */
     @GetMapping("/my")
     public ApiResponse<List<Reserve>> getMyReserves() {
         return ApiResponse.success(reserveService.findByCno(UserContext.getUserId()));
     }
 
-    /** 班长预订教材，cno 自动从上下文获取 */
+    /** 班级预订教材，cno 自动从上下文获取 */
     @PostMapping
     public ApiResponse<Reserve> add(@RequestBody Reserve reserve) {
         reserve.setCno(UserContext.getUserId());
         return ApiResponse.success("预订成功", reserveService.add(reserve));
     }
 
-    /** 班长修改自己订单的数量 */
+    /** 班级修改自己订单的数量 */
     @PutMapping("/my/{id}/num")
     public ApiResponse<String> updateMyNum(@PathVariable String id, @RequestBody Map<String, Object> params) {
         int rnum = Integer.parseInt(params.get("rnum").toString());

@@ -33,7 +33,7 @@ import { useAuthStore } from '@/stores/auth'
 import { getBooks, getMyReserves } from '@/api'
 
 const authStore = useAuthStore()
-const userName = computed(() => authStore.user?.cno || '班长')
+const userName = computed(() => authStore.user?.cno || '班级')
 const stats = reactive({ bookCount: 0, reserveCount: 0, cnum: authStore.user?.cnum || 0 })
 
 onMounted(async () => {

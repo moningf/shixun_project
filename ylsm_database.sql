@@ -76,18 +76,18 @@ INSERT INTO `teacher` VALUES
 ('T006', '周老师', '计算机学院',     '13900006666', 'zhouteach@school.edu.cn', 'C006', '123456');
 
 -- ============================================================
--- 4. 班长表（学生）
+-- 4. 班级表
 -- ============================================================
 DROP TABLE IF EXISTS `monitor`;
 CREATE TABLE `monitor` (
-  `Cno`      varchar(20)  NOT NULL COMMENT '班长学号',
+  `Cno`      varchar(20)  NOT NULL COMMENT '班级编号',
   `Cgrade`   varchar(20)  DEFAULT NULL COMMENT '年级',
   `Cdept`    varchar(100) DEFAULT NULL COMMENT '学院',
   `Cmajor`   varchar(100) DEFAULT NULL COMMENT '专业',
   `Cnum`     varchar(10)  DEFAULT NULL COMMENT '班级人数',
   `password` varchar(50)  DEFAULT NULL COMMENT '密码',
   PRIMARY KEY (`Cno`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='班长';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='班级';
 
 INSERT INTO `monitor` VALUES
 ('2021001001', '2021级', '计算机学院', '计算机科学与技术', '45', '123456'),
@@ -130,7 +130,7 @@ INSERT INTO `book` VALUES
 DROP TABLE IF EXISTS `reserve`;
 CREATE TABLE `reserve` (
   `Rno`        varchar(20)   NOT NULL COMMENT '订单号',
-  `Cno`        varchar(20)   DEFAULT NULL COMMENT '班长学号',
+  `Cno`        varchar(20)   DEFAULT NULL COMMENT '班级编号',
   `Bno`        varchar(20)   DEFAULT NULL COMMENT '书号',
   `Rnum`       int(11)       DEFAULT NULL COMMENT '预订数量',
   `totalPrice` decimal(10,2) DEFAULT NULL COMMENT '总价',

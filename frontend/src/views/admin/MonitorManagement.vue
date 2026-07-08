@@ -3,12 +3,12 @@
     <el-card>
       <template #header>
         <div class="card-header">
-          <span>班长管理</span>
-          <el-button type="primary" @click="showAddDialog">添加班长</el-button>
+          <span>班级管理</span>
+          <el-button type="primary" @click="showAddDialog">添加班级</el-button>
         </div>
       </template>
       <el-table :data="tableData" border stripe v-loading="loading">
-        <el-table-column prop="cno" label="学号" width="120" />
+        <el-table-column prop="cno" label="班级编号" width="120" />
         <el-table-column prop="cgrade" label="年级" width="100" />
         <el-table-column prop="cdept" label="学院" width="150" />
         <el-table-column prop="cmajor" label="专业" width="150" />
@@ -22,9 +22,9 @@
       </el-table>
     </el-card>
 
-    <el-dialog :title="isEdit ? '编辑班长' : '添加班长'" v-model="dialogVisible" width="500px">
+    <el-dialog :title="isEdit ? '编辑班级' : '添加班级'" v-model="dialogVisible" width="500px">
       <el-form ref="formRef" :model="form" :rules="rules" label-width="100px">
-        <el-form-item label="学号" prop="cno">
+        <el-form-item label="班级编号" prop="cno">
           <el-input v-model="form.cno" :disabled="isEdit" />
         </el-form-item>
         <el-form-item label="年级" prop="cgrade"><el-input v-model="form.cgrade" /></el-form-item>
@@ -60,7 +60,7 @@ const form = reactive({
 })
 
 const rules = {
-  cno: [{ required: true, message: '请输入学号', trigger: 'blur' }],
+  cno: [{ required: true, message: '请输入班级编号', trigger: 'blur' }],
   cgrade: [{ required: true, message: '请输入年级', trigger: 'blur' }],
   cdept: [{ required: true, message: '请输入学院', trigger: 'blur' }],
   cmajor: [{ required: true, message: '请输入专业', trigger: 'blur' }],
@@ -108,7 +108,7 @@ async function handleSubmit() {
 
 async function handleDelete(cno) {
   try {
-    await ElMessageBox.confirm('确定删除该班长吗？', '提示', { type: 'warning' })
+    await ElMessageBox.confirm('确定删除该班级吗？', '提示', { type: 'warning' })
     await deleteMonitor(cno)
     ElMessage.success('删除成功')
     loadData()
